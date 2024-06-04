@@ -47,8 +47,6 @@ GObject*    bus_new            (void);
 void        bus_set_value      (Bus         *self,
                                 const gchar *key,
                                 GVariant    *value);
-GVariant   *bus_get_value      (Bus         *self,
-                                const gchar *key);
 
 G_END_DECLS
 

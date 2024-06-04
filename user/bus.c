@@ -133,39 +133,6 @@ bus_set_value (Bus         *self,
         g_warning ("Error setting value: %s", error->message);
 }
 
-/**
- * bus_get_value:
- *
- * Get value on the bus
- *
- * @self: a #Bus
- * @key: a setting key
- * 
- * Return value: (transfer full): the bus value.
- */
-GVariant*
-bus_get_value (Bus         *self,
-               const gchar *key)
-{
-    g_autoptr(GError) error = NULL;
-    g_autoptr(GVariant) result = NULL;
-
-    result = g_dbus_proxy_call_sync (
-        self->priv->miatoll_settings_proxy,
-        "Get",
-        g_variant_new ("(&s)", key),
-        G_DBUS_CALL_FLAGS_NONE,
-        -1,
-        NULL,
-        &error
-    );
-
-    if (error != NULL)
-        g_warning ("Error getting value: %s", error->message);
-    
-    return g_steal_pointer (&result);
-}
-
 static Bus *default_bus = NULL;
 /**
  * bus_get_default:

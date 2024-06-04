@@ -35,23 +35,8 @@ set_setting (Bus         *self,
         
         value = g_strdup_printf ("%d", double_tap);
         
-        write_to_file ("/srv/touchpanel/double_tap", value);
+        write_to_file ("/sys/touchpanel/double_tap", value);
     }
-}
-
-static GVariant*
-get_setting (Bus         *self,
-             const gchar *setting)
-{
-    g_autofree gchar *value = NULL;
-    g_autoptr(GVariant) variant;
-    
-    if (g_strcmp0 (setting, "touchpanel-double-tap") == 0) {
-        value = read_from_file ("/sys/touchpanel/double_tap");
-        return g_variant_new ("(&s)", value);
-    }
-    
-    return NULL;
 }
 
 static void
@@ -76,17 +61,6 @@ handle_method_call (GDBusConnection       *connection,
         
         g_dbus_method_invocation_return_value (
             invocation, NULL
-        );
-    } else if (g_strcmp0 (method_name, "Get") == 0) {
-        const gchar *setting;
-        g_autoptr(GVariant) value;
-        
-        g_variant_get (parameters, "(&s)", &setting);
-        
-        value = get_setting (self, setting);
-        
-        g_dbus_method_invocation_return_value (
-            invocation, value
         );
     }
 }

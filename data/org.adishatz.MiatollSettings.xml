@@ -17,15 +17,5 @@
         <arg direction='in' name='value' type='v'/>
       </method>
 
-      <!--
-        Get:
-
-        Get setting value
-      -->
-      <method name='Get'>
-        <arg direction='in' name='setting' type='s'/>
-        <arg direction='out' name='value' type='v'/>
-      </method>
-    
    </interface>
 </node>
