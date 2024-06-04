@@ -1,0 +1,9 @@
+[Unit]
+Description=Miatoll Settings
+
+[Service]
+Type=exec
+ExecStart=@BIN_DIR@/miatoll-settings
+
+[Install]
+WantedBy=gnome-session-initialized.target

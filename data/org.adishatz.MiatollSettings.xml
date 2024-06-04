@@ -1,0 +1,31 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<node>
+  <!--
+      org.adishatz.MiatollSettings:
+      @short_description: MiatollSettings daemon
+  -->
+  <interface name='org.adishatz.MiatollSettings'>
+     <!--
+        Set:
+
+        Set setting to value
+      -->
+      <method name='Set'>
+        <arg direction='in' name='setting' type='s'/>
+        <arg direction='in' name='value' type='v'/>
+      </method>
+
+      <!--
+        Get:
+
+        Get setting value
+      -->
+      <method name='Get'>
+        <arg direction='in' name='setting' type='s'/>
+        <arg direction='out' name='value' type='v'/>
+      </method>
+    
+   </interface>
+</node>
