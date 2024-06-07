@@ -1,4 +1,4 @@
-# Miatoll Settings
+# Mobile Settings
 
 Configure various settings from non root user.
 

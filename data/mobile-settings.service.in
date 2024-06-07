@@ -1,9 +1,9 @@
 [Unit]
-Description=Miatoll Settings
+Description=Mobile Settings
 
 [Service]
 Type=exec
-ExecStart=@BIN_DIR@/miatoll-settings
+ExecStart=@BIN_DIR@/mobile-settings
 
 [Install]
 WantedBy=gnome-session-initialized.target

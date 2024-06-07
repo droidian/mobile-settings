@@ -9,12 +9,12 @@
 #include "bus.h"
 #include "settings.h"
 
-#define DBUS_MIATOLL_SETTINGS_NAME           "org.adishatz.MiatollSettings"
-#define DBUS_MIATOLL_SETTINGS_PATH           "/org/adishatz/MiatollSettings"
-#define DBUS_MIATOLL_SETTINGS_INTERFACE      "org.adishatz.MiatollSettings"
+#define DBUS_MIATOLL_SETTINGS_NAME           "org.adishatz.MobileSettings"
+#define DBUS_MIATOLL_SETTINGS_PATH           "/org/adishatz/MobileSettings"
+#define DBUS_MIATOLL_SETTINGS_INTERFACE      "org.adishatz.MobileSettings"
 
 struct _BusPrivate {
-    GDBusProxy *miatoll_settings_proxy;
+    GDBusProxy *mobile_settings_proxy;
 };
 
 G_DEFINE_TYPE_WITH_CODE (Bus, bus, G_TYPE_OBJECT,
@@ -36,7 +36,7 @@ bus_dispose (GObject *bus)
 {
     Bus *self = BUS (bus);
 
-    g_clear_object (&self->priv->miatoll_settings_proxy);
+    g_clear_object (&self->priv->mobile_settings_proxy);
 
     G_OBJECT_CLASS (bus_parent_class)->dispose (bus);
 }
@@ -62,7 +62,7 @@ bus_init (Bus *self)
 {
     self->priv = bus_get_instance_private (self);
 
-    self->priv->miatoll_settings_proxy = g_dbus_proxy_new_for_bus_sync (
+    self->priv->mobile_settings_proxy = g_dbus_proxy_new_for_bus_sync (
         G_BUS_TYPE_SYSTEM,
         0,
         NULL,
@@ -120,7 +120,7 @@ bus_set_value (Bus         *self,
     g_autoptr(GVariant) result = NULL;
 
     result = g_dbus_proxy_call_sync (
-        self->priv->miatoll_settings_proxy,
+        self->priv->mobile_settings_proxy,
         "Set",
         g_variant_new ("(&sv)", key, value),
         G_DBUS_CALL_FLAGS_NONE,

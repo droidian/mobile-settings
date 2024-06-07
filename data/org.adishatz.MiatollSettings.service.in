@@ -1,4 +1,0 @@
-[D-BUS Service]
-Name=org.adishatz.MiatollSettings
-Exec=@SBIN_DIR@/miatoll-settings
-User=root

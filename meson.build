@@ -1,4 +1,4 @@
-project('miatoll-settings', 'c',
+project('mobile-settings', 'c',
           version: '0.2.0',
     meson_version: '>= 0.60.0',
   default_options: [ 'warning_level=2', 'werror=false', 'c_std=gnu11', ],
@@ -10,9 +10,9 @@ prefix = get_option('prefix')
 
 data_dir = join_paths(prefix, get_option('datadir'))
 localedir = join_paths(prefix, get_option('localedir'))
-miatoll_settings_data_dir = join_paths(data_dir, meson.project_name())
-miatoll_settings_resource = join_paths(miatoll_settings_data_dir, meson.project_name() + '.gresource')
-devices_json = join_paths(miatoll_settings_data_dir, 'devices.json')
+mobile_settings_data_dir = join_paths(data_dir, meson.project_name())
+mobile_settings_resource = join_paths(mobile_settings_data_dir, meson.project_name() + '.gresource')
+devices_json = join_paths(mobile_settings_data_dir, 'devices.json')
 dbus_conf_dir = join_paths(data_dir, 'dbus-1/system.d')
 dbus_service_dir = join_paths(data_dir, 'dbus-1/system-services')
 systemd_system_dir = join_paths(get_option('prefix'), 'lib/systemd/system')
@@ -21,9 +21,9 @@ bin_dir = join_paths(get_option('prefix'), get_option('bindir'))
 sbin_dir = join_paths(get_option('prefix'), get_option('sbindir'))
 
 config_h = configuration_data()
-config_h.set('APP_ID', '"org.adishatz.MiatollSettings"')
+config_h.set('APP_ID', '"org.adishatz.MobileSettings"')
 config_h.set_quoted('PACKAGE_VERSION', meson.project_version())
-config_h.set('MIATOLL_SETTINGSRESOURCES', '"' + miatoll_settings_resource + '"')
+config_h.set('MIATOLL_SETTINGSRESOURCES', '"' + mobile_settings_resource + '"')
 config_h.set('DEVICES_JSON', '"' + devices_json + '"')
 config_h.set('BIN_DIR', bin_dir)
 config_h.set('SBIN_DIR', sbin_dir)

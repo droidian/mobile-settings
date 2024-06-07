@@ -3,10 +3,10 @@
 
 <node>
   <!--
-      org.adishatz.MiatollSettings:
-      @short_description: MiatollSettings daemon
+      org.adishatz.MobileSettings:
+      @short_description: MobileSettings daemon
   -->
-  <interface name='org.adishatz.MiatollSettings'>
+  <interface name='org.adishatz.MobileSettings'>
      <!--
         Set:
 

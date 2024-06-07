@@ -7,8 +7,8 @@
 #include "bus.h"
 #include "../common/utils.h"
 
-#define ADISHATZ_DBUS_NAME "org.adishatz.MiatollSettings"
-#define ADISHATZ_DBUS_PATH "/org/adishatz/MiatollSettings"
+#define ADISHATZ_DBUS_NAME "org.adishatz.MobileSettings"
+#define ADISHATZ_DBUS_PATH "/org/adishatz/MobileSettings"
 
 struct _BusPrivate {
     GDBusConnection *adishatz_connection;
@@ -186,7 +186,7 @@ bus_init (Bus *self)
 
     self->priv->adishatz_introspection_data = bus_init_path (
         ADISHATZ_DBUS_NAME,
-        "/org/adishatz/MiatollSettings/org.adishatz.MiatollSettings.xml",
+        "/org/adishatz/MobileSettings/org.adishatz.MobileSettings.xml",
         &self->priv->adishatz_owner_id,
         self
     );

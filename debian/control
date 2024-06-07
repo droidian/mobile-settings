@@ -1,4 +1,4 @@
-Source: miatoll-settings
+Source: mobile-settings
 Section: utils
 Priority: optional
 Maintainer: Cédric Bellegarde <cedric.bellegarde@adishatz.org>
@@ -6,11 +6,11 @@ Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
 Standards-Version: 4.6.2
-Homepage: https://github.com/gnumdk-miatoll/miatoll-settings
-#Vcs-Browser: https://github.com/gnumdk-miatoll/miatoll-settings
-#Vcs-Git: https://github.com/gnumdk-miatoll/miatoll-settings.git
+Homepage: https://github.com/gnumdk-mobile/mobile-settings
+#Vcs-Browser: https://github.com/gnumdk-mobile/mobile-settings
+#Vcs-Git: https://github.com/gnumdk-mobile/mobile-settings.git
 
-Package: miatoll-settings
+Package: mobile-settings
 Architecture: any
 Depends:
  dbus,

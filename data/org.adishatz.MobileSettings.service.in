@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=org.adishatz.MobileSettings
+Exec=@SBIN_DIR@/mobile-settings
+User=root

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gresources>
-	<gresource prefix="/org/adishatz/MiatollSettings">
-		<file preprocess="xml-stripblanks">org.adishatz.MiatollSettings.xml</file>
-	</gresource>
-</gresources>

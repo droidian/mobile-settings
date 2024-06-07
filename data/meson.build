@@ -1,7 +1,7 @@
 # System service
 configure_file(
-  input: 'miatoll-settings.service.in',
-  output: 'miatoll-settings.service',
+  input: 'mobile-settings.service.in',
+  output: 'mobile-settings.service',
   configuration: config_h,
   install: true,
   install_dir: systemd_user_dir
@@ -9,8 +9,8 @@ configure_file(
 
 # DBus service
 configure_file(
-  input: 'org.adishatz.MiatollSettings.service.in',
-  output: 'org.adishatz.MiatollSettings.service',
+  input: 'org.adishatz.MobileSettings.service.in',
+  output: 'org.adishatz.MobileSettings.service',
   configuration: config_h,
   install: true,
   install_dir: dbus_service_dir
@@ -18,7 +18,7 @@ configure_file(
 
 # DBus configuration
 install_data(
-  'org.adishatz.MiatollSettings.conf',
+  'org.adishatz.MobileSettings.conf',
   install_dir: dbus_conf_dir
 )
 
@@ -27,11 +27,11 @@ gnome.compile_resources(
   meson.project_name() + '.gresource.xml',
   gresource_bundle: true,
   source_dir: '.',
-  install_dir: miatoll_settings_data_dir,
+  install_dir: mobile_settings_data_dir,
   install: true,
 )
 
-schema_src = 'org.adishatz.MiatollSettings.gschema.xml'
+schema_src = 'org.adishatz.MobileSettings.gschema.xml'
 compiled = gnome.compile_schemas(build_by_default: true,
                                  depend_files: files(schema_src))
 

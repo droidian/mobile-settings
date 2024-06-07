@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="mps">
-  <schema id="org.adishatz.MiatollSettings" path="/org/adishatz/MiatollSettings/">
+  <schema id="org.adishatz.MobileSettings" path="/org/adishatz/MobileSettings/">
 
     <key name="touchpanel-double-tap" type="b">
       <default>true</default>
