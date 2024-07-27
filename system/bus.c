@@ -20,22 +20,26 @@ struct _BusPrivate {
 G_DEFINE_TYPE_WITH_CODE (Bus, bus, G_TYPE_OBJECT,
     G_ADD_PRIVATE (Bus))
 
+static void
+set_double_tap (GVariant *variant)
+{
+    g_autofree gchar *value = NULL;
+    gboolean double_tap;
+
+    g_variant_get (variant, "b", &double_tap);
+    g_warning("touch: %b", double_tap);
+    value = g_strdup_printf ("%d", double_tap);
+
+    write_to_file ("/sys/touchpanel/double_tap", value);
+}
 
 static void
 set_setting (Bus         *self,
              const gchar *setting,
              GVariant    *variant)
 {
-    g_autofree gchar *value = NULL;
-    
     if (g_strcmp0 (setting, "touchpanel-double-tap") == 0) {
-        gboolean double_tap;
-
-        g_variant_get (variant, "b", &double_tap);
-        g_warning("touch: %b", double_tap);
-        value = g_strdup_printf ("%d", double_tap);
-        
-        write_to_file ("/sys/touchpanel/double_tap", value);
+        set_double_tap (variant);
     }
 }
 
