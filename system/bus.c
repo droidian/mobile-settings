@@ -27,7 +27,6 @@ set_double_tap (GVariant *variant)
     gboolean double_tap;
 
     g_variant_get (variant, "b", &double_tap);
-    g_warning("touch: %b", double_tap);
     value = g_strdup_printf ("%d", double_tap);
 
     write_to_file ("/sys/touchpanel/double_tap", value);

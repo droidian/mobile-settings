@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="mps">
-  <schema id="org.droidian.MobileSettings" path="/org/droidian_/MobileSettings/">
+  <schema id="org.droidian.MobileSettings" path="/org/droidian/MobileSettings/">
 
+    <key name="touchpanel-double-tap-available" type="b">
+      <default>false</default>
+      <summary>Wake up screen by double taping panel if available</summary>
+      <description></description>
+    </key>
     <key name="touchpanel-double-tap" type="b">
       <default>true</default>
       <summary>Wake up screen by double taping panel</summary>
