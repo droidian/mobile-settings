@@ -3,10 +3,10 @@
 
 <node>
   <!--
-      org.adishatz.MobileSettings:
+      org.droidian.MobileSettings:
       @short_description: MobileSettings daemon
   -->
-  <interface name='org.adishatz.MobileSettings'>
+  <interface name='org.droidian.MobileSettings'>
      <!--
         Set:
 

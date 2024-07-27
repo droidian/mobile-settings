@@ -1,4 +1,4 @@
 [D-BUS Service]
-Name=org.adishatz.MobileSettings
+Name=org.droidian.MobileSettings
 Exec=@SBIN_DIR@/mobile-settings
 User=root

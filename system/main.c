@@ -46,7 +46,7 @@ main (gint argc, gchar * argv[])
         return EXIT_SUCCESS;
     }
 
-    resource = g_resource_load (MIATOLL_SETTINGSRESOURCES, NULL);
+    resource = g_resource_load (DROIDIAN_SETTINGSRESOURCES, NULL);
     g_resources_register (resource);
 
     bus = bus_new ();

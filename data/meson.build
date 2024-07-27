@@ -9,8 +9,8 @@ configure_file(
 
 # DBus service
 configure_file(
-  input: 'org.adishatz.MobileSettings.service.in',
-  output: 'org.adishatz.MobileSettings.service',
+  input: 'org.droidian.MobileSettings.service.in',
+  output: 'org.droidian.MobileSettings.service',
   configuration: config_h,
   install: true,
   install_dir: dbus_service_dir
@@ -18,7 +18,7 @@ configure_file(
 
 # DBus configuration
 install_data(
-  'org.adishatz.MobileSettings.conf',
+  'org.droidian.MobileSettings.conf',
   install_dir: dbus_conf_dir
 )
 
@@ -31,7 +31,7 @@ gnome.compile_resources(
   install: true,
 )
 
-schema_src = 'org.adishatz.MobileSettings.gschema.xml'
+schema_src = 'org.droidian.MobileSettings.gschema.xml'
 compiled = gnome.compile_schemas(build_by_default: true,
                                  depend_files: files(schema_src))
 

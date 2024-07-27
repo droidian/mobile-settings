@@ -7,14 +7,14 @@
 #include "bus.h"
 #include "../common/utils.h"
 
-#define ADISHATZ_DBUS_NAME "org.adishatz.MobileSettings"
+#define ADISHATZ_DBUS_NAME "org.droidian.MobileSettings"
 #define ADISHATZ_DBUS_PATH "/org/adishatz/MobileSettings"
 
 struct _BusPrivate {
-    GDBusConnection *adishatz_connection;
+    GDBusConnection *droidian_connection;
 
-    GDBusNodeInfo *adishatz_introspection_data;
-    guint adishatz_owner_id;
+    GDBusNodeInfo *droidian_introspection_data;
+    guint droidian_owner_id;
 };
 
 G_DEFINE_TYPE_WITH_CODE (Bus, bus, G_TYPE_OBJECT,
@@ -30,9 +30,9 @@ set_setting (Bus         *self,
     
     if (g_strcmp0 (setting, "touchpanel-double-tap") == 0) {
         gboolean double_tap;
-        
+
         g_variant_get (variant, "b", &double_tap);
-        
+        g_warning("touch: %b", double_tap);
         value = g_strdup_printf ("%d", double_tap);
         
         write_to_file ("/sys/touchpanel/double_tap", value);
@@ -66,7 +66,7 @@ handle_method_call (GDBusConnection       *connection,
 }
 
 
-static const GDBusInterfaceVTable adishatz_interface_vtable = {
+static const GDBusInterfaceVTable droidian_interface_vtable = {
     handle_method_call,
 };
 
@@ -81,14 +81,14 @@ on_bus_acquired (GDBusConnection *connection,
     registration_id = g_dbus_connection_register_object (
         connection,
         ADISHATZ_DBUS_PATH,
-        self->priv->adishatz_introspection_data->interfaces[0],
-        &adishatz_interface_vtable,
+        self->priv->droidian_introspection_data->interfaces[0],
+        &droidian_interface_vtable,
         user_data,
         NULL,
         NULL
     );
 
-    self->priv->adishatz_connection = g_object_ref (connection);
+    self->priv->droidian_connection = g_object_ref (connection);
 
     g_assert (registration_id > 0);
 }
@@ -150,15 +150,15 @@ bus_dispose (GObject *bus)
 {
     Bus *self = BUS (bus);
 
-    if (self->priv->adishatz_owner_id != 0) {
-        g_bus_unown_name (self->priv->adishatz_owner_id);
+    if (self->priv->droidian_owner_id != 0) {
+        g_bus_unown_name (self->priv->droidian_owner_id);
     }
 
     g_clear_pointer (
-      &self->priv->adishatz_introspection_data, g_dbus_node_info_unref
+      &self->priv->droidian_introspection_data, g_dbus_node_info_unref
     );
 
-    g_clear_object (&self->priv->adishatz_connection);
+    g_clear_object (&self->priv->droidian_connection);
 
     G_OBJECT_CLASS (bus_parent_class)->dispose (bus);
 }
@@ -184,10 +184,10 @@ bus_init (Bus *self)
 {
     self->priv = bus_get_instance_private (self);
 
-    self->priv->adishatz_introspection_data = bus_init_path (
+    self->priv->droidian_introspection_data = bus_init_path (
         ADISHATZ_DBUS_NAME,
-        "/org/adishatz/MobileSettings/org.adishatz.MobileSettings.xml",
-        &self->priv->adishatz_owner_id,
+        "/org/adishatz/MobileSettings/org.droidian.MobileSettings.xml",
+        &self->priv->droidian_owner_id,
         self
     );
 }

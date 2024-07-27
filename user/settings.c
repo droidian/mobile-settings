@@ -48,11 +48,20 @@ on_setting_changed (GSettings   *settings,
 static gboolean
 settings_notify_settings (Settings *self)
 {
-    on_setting_changed (
-        self->priv->settings,
-        "touchpanel-double-tap",
-        self
-    );
+    g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup (
+        g_settings_schema_source_get_default (),
+        APP_ID,
+        TRUE);
+    gchar **keys = g_settings_schema_list_keys (schema);
+    gint i;
+
+    for (i = 0; keys[i] != NULL; i++) {
+        on_setting_changed (
+            self->priv->settings,
+            keys[i],
+            self
+        );
+    }
     
     return FALSE;
 }
@@ -104,7 +113,7 @@ settings_init (Settings *self)
 
     g_signal_connect (
         self->priv->settings,
-        "changed::touchpanel-double-tap",
+        "changed",
         G_CALLBACK (on_setting_changed),
         self
     );

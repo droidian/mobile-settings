@@ -9,9 +9,9 @@
 #include "bus.h"
 #include "settings.h"
 
-#define DBUS_MIATOLL_SETTINGS_NAME           "org.adishatz.MobileSettings"
-#define DBUS_MIATOLL_SETTINGS_PATH           "/org/adishatz/MobileSettings"
-#define DBUS_MIATOLL_SETTINGS_INTERFACE      "org.adishatz.MobileSettings"
+#define DBUS_DROIDIAN_SETTINGS_NAME           "org.droidian.MobileSettings"
+#define DBUS_DROIDIAN_SETTINGS_PATH           "/org/adishatz/MobileSettings"
+#define DBUS_DROIDIAN_SETTINGS_INTERFACE      "org.droidian.MobileSettings"
 
 struct _BusPrivate {
     GDBusProxy *mobile_settings_proxy;
@@ -66,9 +66,9 @@ bus_init (Bus *self)
         G_BUS_TYPE_SYSTEM,
         0,
         NULL,
-        DBUS_MIATOLL_SETTINGS_NAME,
-        DBUS_MIATOLL_SETTINGS_PATH,
-        DBUS_MIATOLL_SETTINGS_INTERFACE,
+        DBUS_DROIDIAN_SETTINGS_NAME,
+        DBUS_DROIDIAN_SETTINGS_PATH,
+        DBUS_DROIDIAN_SETTINGS_INTERFACE,
         NULL,
         NULL
     );
