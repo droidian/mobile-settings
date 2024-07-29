@@ -1,6 +1,6 @@
 # Mobile Settings
 
-Configure various settings from non root user.
+DBus service to configure kernel related settings.
 
 ## Depends on
 
