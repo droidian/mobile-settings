@@ -1,6 +1,7 @@
 mobile_settings_sources = [
   'bus.c',
   'gestures.c',
+  'gestures-xiaomi.c',
   'main.c',
   '../common/utils.c'
 ]

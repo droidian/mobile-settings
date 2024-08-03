@@ -7,11 +7,16 @@
 #include "bus.h"
 #include "../common/utils.h"
 
+#include "gestures.h"
+#include "gestures-xiaomi.h"
+
 #define ADISHATZ_DBUS_NAME "org.droidian.MobileSettings"
 #define ADISHATZ_DBUS_PATH "/org/adishatz/MobileSettings"
 
 struct _BusPrivate {
     GDBusConnection *droidian_connection;
+
+    Gestures *gestures;
 
     GDBusNodeInfo *droidian_introspection_data;
     guint droidian_owner_id;
@@ -21,24 +26,17 @@ G_DEFINE_TYPE_WITH_CODE (Bus, bus, G_TYPE_OBJECT,
     G_ADD_PRIVATE (Bus))
 
 static void
-set_double_tap (GVariant *variant)
-{
-    g_autofree gchar *value = NULL;
-    gboolean double_tap;
-
-    g_variant_get (variant, "b", &double_tap);
-    value = g_strdup_printf ("%d", double_tap);
-
-    write_to_file ("/sys/touchpanel/double_tap", value);
-}
-
-static void
 set_setting (Bus         *self,
              const gchar *setting,
              GVariant    *variant)
 {
+    g_auto(GValue) val = G_VALUE_INIT;
+
     if (g_strcmp0 (setting, "touchpanel-double-tap") == 0) {
-        set_double_tap (variant);
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "double-tap-to-wake-enabled", &val);
+        }
     }
 }
 
@@ -161,6 +159,9 @@ bus_dispose (GObject *bus)
       &self->priv->droidian_introspection_data, g_dbus_node_info_unref
     );
 
+    if (self->priv->gestures)
+        g_clear_object (&self->priv->gestures);
+
     g_clear_object (&self->priv->droidian_connection);
 
     G_OBJECT_CLASS (bus_parent_class)->dispose (bus);
@@ -193,6 +194,11 @@ bus_init (Bus *self)
         &self->priv->droidian_owner_id,
         self
     );
+
+    if (gestures_xiaomi_supported ())
+        self->priv->gestures = (Gestures *) gestures_xiaomi_new ();
+    else
+        self->priv->gestures = NULL;
 }
 
 /**
