@@ -1,5 +1,6 @@
 mobile_settings_sources = [
   'bus.c',
+  'gestures.c',
   'main.c',
   '../common/utils.c'
 ]
