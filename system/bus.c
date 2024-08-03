@@ -9,6 +9,7 @@
 
 #include "gestures.h"
 #include "gestures-xiaomi.h"
+#include "gestures-sec.h"
 
 #define ADISHATZ_DBUS_NAME "org.droidian.MobileSettings"
 #define ADISHATZ_DBUS_PATH "/org/adishatz/MobileSettings"
@@ -197,6 +198,8 @@ bus_init (Bus *self)
 
     if (gestures_xiaomi_supported ())
         self->priv->gestures = (Gestures *) gestures_xiaomi_new ();
+    else if (gestures_sec_supported ())
+        self->priv->gestures = (Gestures *) gestures_sec_new ();
     else
         self->priv->gestures = NULL;
 }
