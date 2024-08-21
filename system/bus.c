@@ -8,7 +8,7 @@
 #include "../common/utils.h"
 
 #include "gestures.h"
-#include "gestures-xiaomi.h"
+#include "gestures-generic.h"
 #include "gestures-sec.h"
 
 #define ADISHATZ_DBUS_NAME "org.droidian.MobileSettings"
@@ -196,8 +196,8 @@ bus_init (Bus *self)
         self
     );
 
-    if (gestures_xiaomi_supported ())
-        self->priv->gestures = (Gestures *) gestures_xiaomi_new ();
+    if (gestures_generic_supported ())
+        self->priv->gestures = (Gestures *) gestures_generic_new ();
     else if (gestures_sec_supported ())
         self->priv->gestures = (Gestures *) gestures_sec_new ();
     else
