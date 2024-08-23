@@ -8,6 +8,7 @@
 #include "../common/utils.h"
 
 #include "gestures.h"
+#include "gestures-i2c.h"
 #include "gestures-xiaomi.h"
 #include "gestures-sec.h"
 
@@ -200,6 +201,8 @@ bus_init (Bus *self)
         self->priv->gestures = (Gestures *) gestures_xiaomi_new ();
     else if (gestures_sec_supported ())
         self->priv->gestures = (Gestures *) gestures_sec_new ();
+    else if (gestures_i2c_supported ())
+        self->priv->gestures = (Gestures *) gestures_i2c_new ();
     else
         self->priv->gestures = NULL;
 }
