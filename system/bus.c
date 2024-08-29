@@ -11,6 +11,7 @@
 #include "gestures-i2c.h"
 #include "gestures-xiaomi.h"
 #include "gestures-sec.h"
+#include "gestures-oneplus.h"
 
 #define ADISHATZ_DBUS_NAME "org.droidian.MobileSettings"
 #define ADISHATZ_DBUS_PATH "/org/adishatz/MobileSettings"
@@ -203,6 +204,8 @@ bus_init (Bus *self)
         self->priv->gestures = (Gestures *) gestures_sec_new ();
     else if (gestures_i2c_supported ())
         self->priv->gestures = (Gestures *) gestures_i2c_new ();
+    else if (gestures_oneplus_supported ())
+        self->priv->gestures = (Gestures *) gestures_oneplus_new ();
     else
         self->priv->gestures = NULL;
 }
