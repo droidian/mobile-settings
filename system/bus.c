@@ -41,6 +41,30 @@ set_setting (Bus         *self,
             g_object_set_property (G_OBJECT (self->priv->gestures), "double-tap-to-wake-enabled", &val);
         }
     }
+    if (g_strcmp0 (setting, "touchpanel-swipe-up") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-up-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-down") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-down-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-left") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-left-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-right") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-right-to-wake-enabled", &val);
+        }
+    }
 }
 
 static void
