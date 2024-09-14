@@ -11,6 +11,7 @@
 #include "gestures-i2c.h"
 #include "gestures-xiaomi.h"
 #include "gestures-sec.h"
+#include "gestures-oneplus.h"
 
 #define ADISHATZ_DBUS_NAME "org.droidian.MobileSettings"
 #define ADISHATZ_DBUS_PATH "/org/adishatz/MobileSettings"
@@ -38,6 +39,30 @@ set_setting (Bus         *self,
         if (self->priv->gestures) {
             g_dbus_gvariant_to_gvalue (variant, &val);
             g_object_set_property (G_OBJECT (self->priv->gestures), "double-tap-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-up") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-up-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-down") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-down-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-left") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-left-to-wake-enabled", &val);
+        }
+    }
+    if (g_strcmp0 (setting, "touchpanel-swipe-right") == 0) {
+        if (self->priv->gestures) {
+            g_dbus_gvariant_to_gvalue (variant, &val);
+            g_object_set_property (G_OBJECT (self->priv->gestures), "swipe-right-to-wake-enabled", &val);
         }
     }
 }
@@ -203,6 +228,8 @@ bus_init (Bus *self)
         self->priv->gestures = (Gestures *) gestures_sec_new ();
     else if (gestures_i2c_supported ())
         self->priv->gestures = (Gestures *) gestures_i2c_new ();
+    else if (gestures_oneplus_supported ())
+        self->priv->gestures = (Gestures *) gestures_oneplus_new ();
     else
         self->priv->gestures = NULL;
 }

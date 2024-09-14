@@ -12,6 +12,46 @@
       <summary>Wake up screen by double taping panel</summary>
       <description></description>
     </key>
+    <key name="touchpanel-swipe-up-available" type="b">
+      <default>false</default>
+      <summary>Wake up screen by swiping up if available</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-up" type="b">
+      <default>true</default>
+      <summary>Wake up screen by swiping up</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-down-available" type="b">
+      <default>false</default>
+      <summary>Wake up screen by swiping down if available</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-down" type="b">
+      <default>true</default>
+      <summary>Wake up screen by swiping down</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-left-available" type="b">
+      <default>false</default>
+      <summary>Wake up screen by swiping left if available</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-left" type="b">
+      <default>true</default>
+      <summary>Wake up screen by swiping left</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-right-available" type="b">
+      <default>false</default>
+      <summary>Wake up screen by swiping right if available</summary>
+      <description></description>
+    </key>
+    <key name="touchpanel-swipe-right" type="b">
+      <default>true</default>
+      <summary>Wake up screen by swiping right</summary>
+      <description></description>
+    </key>
 
   </schema>
 </schemalist>

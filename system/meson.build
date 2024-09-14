@@ -4,6 +4,7 @@ mobile_settings_sources = [
   'gestures-i2c.c',
   'gestures-xiaomi.c',
   'gestures-sec.c',
+  'gestures-oneplus.c',
   'main.c',
   '../common/utils.c'
 ]
